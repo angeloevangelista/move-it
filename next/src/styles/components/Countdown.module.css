@@ -75,3 +75,31 @@
   background-color: var(--red);
   color: var(--white);
 }
+
+.countdownButtonFinished {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 4px 4px 0 0;
+}
+
+.countdownButtonFinished:after {
+  content: '';
+
+  position: absolute;
+
+  top: 100%;
+  width: 100%;
+  height: 4px;
+
+  background-color: var(--green);
+  border-radius: 0 0 4px 4px;
+}
+
+.countdownButtonFinished > svg {
+  fill: var(--green);
+  margin-left: 0.8rem;
+}

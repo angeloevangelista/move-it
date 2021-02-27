@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 import styles from '../styles/components/Countdown.module.css';
 
@@ -55,8 +56,12 @@ const Countdown: React.FC = () => {
       </div>
 
       {hasFinished && (
-        <button disabled className={styles.countdownButton}>
+        <button
+          disabled
+          className={`${styles.countdownButton} ${styles.countdownButtonFinished}`}
+        >
           Ciclo encerrado
+          <AiFillCheckCircle />
         </button>
       )}
 
