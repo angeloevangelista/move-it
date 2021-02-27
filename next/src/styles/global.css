@@ -52,6 +52,13 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+
+  color: var(--text);
+  background-color: var(--white);
+}
+
 a {
   text-decoration: none;
   color: inherit;
