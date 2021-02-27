@@ -53,6 +53,7 @@
   font-weight: 600;
   font-size: 1.25rem;
 
+  margin: 1rem 0;
   padding: 0 2rem 1.5rem;
 
   border-bottom: solid 1px var(--gray-line);
@@ -79,6 +80,8 @@
 }
 
 .challengeActive footer {
+  margin-top: 1rem;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
