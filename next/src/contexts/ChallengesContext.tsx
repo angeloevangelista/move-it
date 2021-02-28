@@ -3,6 +3,8 @@ import Cookies, { CookieAttributes } from 'js-cookie';
 
 import challenges from '../../challenges.json';
 
+import LevelUpModal from '../components/LevelUpModal';
+
 export interface IChallenge {
   type: 'body' | 'eye';
   description: string;
@@ -20,6 +22,7 @@ interface IChallengesContextData {
   resetChallenge: VoidFunction;
   startNewChallenge: VoidFunction;
   completeChallenge: VoidFunction;
+  closeLevelUpModal: VoidFunction;
 }
 
 interface IChallengeContextProps {
@@ -37,13 +40,16 @@ const ChallengesContextProvider: React.FC<IChallengeContextProps> = ({
   ...rest
 }) => {
   const [level, setLevel] = useState(rest.level ?? 1);
+  const [activeChallenge, setActiveChallenge] = useState<IChallenge>(null);
+  const [isLevelUpModalActive, setIsLevelUpModalActive] = useState(false);
+
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0,
   );
+
   const [challengesCompleted, setChallengesCompleted] = useState(
     rest.challengesCompleted ?? 0,
   );
-  const [activeChallenge, setActiveChallenge] = useState<IChallenge>(null);
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
@@ -67,6 +73,11 @@ const ChallengesContextProvider: React.FC<IChallengeContextProps> = ({
 
   function levelUp() {
     setLevel(level + 1);
+    setIsLevelUpModalActive(true);
+  }
+
+  function closeLevelUpModal() {
+    setIsLevelUpModalActive(false);
   }
 
   function startNewChallenge() {
@@ -119,9 +130,12 @@ const ChallengesContextProvider: React.FC<IChallengeContextProps> = ({
         resetChallenge,
         startNewChallenge,
         completeChallenge,
+        closeLevelUpModal,
       }}
     >
       {children}
+
+      {isLevelUpModalActive && <LevelUpModal />}
     </ChallengesContext.Provider>
   );
 };
