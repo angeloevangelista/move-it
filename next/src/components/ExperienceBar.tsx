@@ -1,26 +1,30 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+
+import { useChallengesContext } from '../contexts/ChallengesContext';
+
+import calculatePercentage from '../util/calculatePercentage';
 
 import styles from '../styles/components/ExperienceBar.module.css';
 
 const ExperienceBar: React.FC = () => {
-  const [nextLevelMark, setNextLevelMark] = useState(600);
-  const [experiencePoints, setExperiencePoints] = useState(0);
+  const { currentExperience, experienceToNextLevel } = useChallengesContext();
 
-  const calculatePercentage = useCallback(
-    (currentValue: number, total: number) => (currentValue / total) * 100,
-    [],
+  const currentExperiencePercent = calculatePercentage(
+    currentExperience,
+    experienceToNextLevel,
   );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (calculatePercentage(experiencePoints, nextLevelMark) === 100) {
-        setNextLevelMark(Math.round(nextLevelMark * 1.2));
-        setExperiencePoints(0);
-      } else setExperiencePoints(experiencePoints + 1);
-    }, 1);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (calculatePercentage(experiencePoints, nextLevelMark) === 100) {
+  //       setNextLevelMark(Math.round(nextLevelMark * 1.2));
+  //       setExperiencePoints(0);
+  //     } else setExperiencePoints(experiencePoints + 1);
+  //   }, 1);
 
-    return () => clearInterval(interval);
-  }, [calculatePercentage, experiencePoints, nextLevelMark]);
+  //   return () => clearInterval(interval);
+  // }, [calculatePercentage, experiencePoints, nextLevelMark]);
+  // // Good bye
 
   return (
     <header className={styles.experienceBar}>
@@ -30,21 +34,21 @@ const ExperienceBar: React.FC = () => {
         <div
           className={styles.progress}
           style={{
-            width: `${calculatePercentage(experiencePoints, nextLevelMark)}%`,
+            width: `${currentExperiencePercent}%`,
           }}
         />
 
         <span
           className={styles.currentExperience}
           style={{
-            left: `${calculatePercentage(experiencePoints, nextLevelMark)}%`,
+            left: `${currentExperiencePercent}%`,
           }}
         >
-          {experiencePoints} xp
+          {currentExperience} xp
         </span>
       </div>
 
-      <span>{nextLevelMark} xp</span>
+      <span>{experienceToNextLevel} xp</span>
     </header>
   );
 };

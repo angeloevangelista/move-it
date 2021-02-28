@@ -1,34 +1,48 @@
 import React from 'react';
 
+import {
+  IChallenge,
+  useChallengesContext,
+} from '../contexts/ChallengesContext';
+
 import styles from '../styles/components/ChallengeBox.module.css';
 
 const ChallengeBox: React.FC = () => {
-  const hasActiveChallenge = true;
+  const { activeChallenge, resetChallenge } = useChallengesContext();
+
+  function renderChallengeHero(challenge: IChallenge) {
+    switch (challenge.type) {
+      case 'body':
+        return <img src="icons/body.svg" alt="Hero" />;
+      case 'eye':
+        return <img src="icons/eye.svg" alt="Hero" />;
+      default:
+        return <img src="icons/help-circle.svg" alt="Hero" />;
+    }
+  }
 
   return (
     <div className={styles.container}>
-      {hasActiveChallenge ? (
+      {activeChallenge ? (
         <div className={styles.challengeActive}>
-          <header>Ganhe 400 xp</header>
+          <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
-            <img src="icons/body.svg" alt="Hero" />
+            {renderChallengeHero(activeChallenge)}
 
             <strong>Novo desafio</strong>
-            <p>
-              É agora Diegão, bora lá meu parça. Caminhe por 3 minutos e estique
-              suas pernas pra você ficar saudável.
-            </p>
+            <p>{activeChallenge.description}</p>
           </main>
 
           <footer>
             <button
               className={styles.challengeFailedButton}
-              onClick={() => {}}
+              onClick={resetChallenge}
               type="button"
             >
               Falhei
             </button>
+
             <button
               className={styles.challengeSucceededButton}
               onClick={() => {}}
