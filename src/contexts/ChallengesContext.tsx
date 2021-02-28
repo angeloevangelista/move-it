@@ -44,11 +44,15 @@ const ChallengesContextProvider: React.FC<IChallengeContextProps> = ({
   const [isLevelUpModalActive, setIsLevelUpModalActive] = useState(false);
 
   const [currentExperience, setCurrentExperience] = useState(
-    rest.currentExperience ?? 0,
+    !rest.currentExperience || isNaN(rest.currentExperience)
+      ? 0
+      : rest.currentExperience,
   );
 
   const [challengesCompleted, setChallengesCompleted] = useState(
-    rest.challengesCompleted ?? 0,
+    !rest.challengesCompleted || isNaN(rest.challengesCompleted)
+      ? 0
+      : rest.challengesCompleted,
   );
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
