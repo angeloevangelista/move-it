@@ -4,11 +4,18 @@ import {
   IChallenge,
   useChallengesContext,
 } from '../contexts/ChallengesContext';
+import { useCountdownContext } from '../contexts/CountdownContext';
 
 import styles from '../styles/components/ChallengeBox.module.css';
 
 const ChallengeBox: React.FC = () => {
-  const { activeChallenge, resetChallenge } = useChallengesContext();
+  const {
+    activeChallenge,
+    resetChallenge,
+    completeChallenge,
+  } = useChallengesContext();
+
+  const { resetCountdown } = useCountdownContext();
 
   function renderChallengeHero(challenge: IChallenge) {
     switch (challenge.type) {
@@ -19,6 +26,16 @@ const ChallengeBox: React.FC = () => {
       default:
         return <img src="icons/help-circle.svg" alt="Hero" />;
     }
+  }
+
+  function handleChallengeFailed() {
+    resetChallenge();
+    resetCountdown();
+  }
+
+  function handleChallengeSucceeded() {
+    completeChallenge();
+    resetCountdown();
   }
 
   return (
@@ -37,7 +54,7 @@ const ChallengeBox: React.FC = () => {
           <footer>
             <button
               className={styles.challengeFailedButton}
-              onClick={resetChallenge}
+              onClick={handleChallengeFailed}
               type="button"
             >
               Falhei
@@ -45,7 +62,7 @@ const ChallengeBox: React.FC = () => {
 
             <button
               className={styles.challengeSucceededButton}
-              onClick={() => {}}
+              onClick={handleChallengeSucceeded}
               type="button"
             >
               Completei

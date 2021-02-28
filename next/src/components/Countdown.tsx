@@ -1,48 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
-import { useChallengesContext } from '../contexts/ChallengesContext';
+import { useCountdownContext } from '../contexts/CountdownContext';
 
 import styles from '../styles/components/Countdown.module.css';
 
-let countdownTimeout: NodeJS.Timeout;
-
 const Countdown: React.FC = () => {
-  const [time, setTime] = useState(0.05 * 60);
-  const [isActive, setIsActive] = useState(false);
-  const [hasFinished, setHasFinished] = useState(false);
-
-  const { startNewChallenge } = useChallengesContext();
+  const {
+    time,
+    isActive,
+    hasFinished,
+    resetCountdown,
+    startCountdown,
+  } = useCountdownContext();
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
-
-  function startCountdown() {
-    setIsActive(true);
-  }
-
-  function resetCountdown() {
-    clearTimeout(countdownTimeout);
-    setIsActive(false);
-    setTime(0.05 * 60);
-  }
-
-  useEffect(() => {
-    if (!isActive) return;
-
-    if (time > 0) {
-      countdownTimeout = setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else if (time === 0) {
-      setHasFinished(true);
-      resetCountdown();
-      startNewChallenge();
-    }
-  }, [isActive, time]);
 
   return (
     <>
