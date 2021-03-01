@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { BiPlay, BiX } from 'react-icons/bi';
 
 import { useCountdownContext } from '../contexts/CountdownContext';
 
@@ -41,8 +41,7 @@ const Countdown: React.FC = () => {
           disabled
           className={`${styles.countdownButton} ${styles.countdownButtonFinished}`}
         >
-          Ciclo encerrado
-          <AiFillCheckCircle />
+          Ciclo encerrado <AiFillCheckCircle />
         </button>
       )}
 
@@ -53,11 +52,11 @@ const Countdown: React.FC = () => {
               onClick={resetCountdown}
               className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
             >
-              Abandonar ciclo
+              Abandonar ciclo <BiX />
             </button>
           ) : (
             <button onClick={startCountdown} className={styles.countdownButton}>
-              Iniciar um ciclo
+              Iniciar um ciclo <BiPlay />
             </button>
           )}
         </>

@@ -1,0 +1,71 @@
+.container {
+  position: fixed;
+
+  width: 6rem;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(
+    180deg,
+    var(--white) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.container > img {
+  width: 100%;
+  max-width: 3rem;
+  margin: 2rem 0;
+}
+
+.container > div {
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container > div > a {
+  width: 100%;
+  position: relative;
+
+  text-align: center;
+
+  padding: 1rem 0;
+}
+
+.container > div > a:before {
+  content: '';
+  position: absolute;
+
+  opacity: 0;
+
+  top: 0;
+  left: 0;
+
+  border-radius: 0 8px 8px 0;
+
+  width: 4px;
+  height: 100%;
+
+  background-color: var(--blue);
+
+  transition: opacity 0.25s ease;
+}
+
+.container > div > a:hover::before {
+  opacity: 1;
+}
+
+.container > div > a + a {
+  margin-top: 1rem;
+}

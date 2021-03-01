@@ -66,6 +66,10 @@
   background-color: var(--blue-dark);
 }
 
+.countdownButton > svg {
+  margin-left: 1rem;
+}
+
 .countdownButtonActive {
   background-color: var(--white);
   color: var(--title);
