@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import Cookies, { CookieAttributes } from 'js-cookie';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import challenges from '../../challenges.json';
 
@@ -93,7 +94,7 @@ const ChallengesContextProvider: React.FC<IChallengeContextProps> = ({
 
     new Audio('/notification.mp3').play();
 
-    if (Notification.permission === 'granted') {
+    if (!isMobile && Notification.permission === 'granted') {
       new Notification('Novo desafio 🎉', {
         body: `Valendo ${challenge.amount}xp!`,
       });
