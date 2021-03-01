@@ -19,6 +19,12 @@
   align-content: center;
 }
 
+@media (max-width: 1200px) {
+  .container {
+    padding-bottom: 6rem;
+  }
+}
+
 @media (max-width: 700px) {
   .container > section {
     display: flex;

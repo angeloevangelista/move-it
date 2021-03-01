@@ -16,6 +16,8 @@
     var(--white) 0%,
     rgba(255, 255, 255, 0) 100%
   );
+
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
 }
 
 .container > img {
@@ -41,6 +43,8 @@
   text-align: center;
 
   padding: 1rem 0;
+
+  cursor: pointer;
 }
 
 .container > div > a:before {
@@ -68,4 +72,56 @@
 
 .container > div > a + a {
   margin-top: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+    height: 3.8rem;
+
+    top: unset;
+    bottom: 0;
+
+    flex-direction: row;
+
+    background: linear-gradient(
+      180deg,
+      var(--white) 0%,
+      rgba(255, 255, 255, 0.8) 100%
+    );
+  }
+
+  .container > img {
+    display: none;
+  }
+
+  .container > div {
+    height: 100%;
+    flex-direction: row;
+  }
+
+  .container > div > a {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .container > div > a:before {
+    top: unset;
+    bottom: 0;
+
+    border-radius: 8px 8px 0 0;
+
+    width: 100%;
+    height: 4px;
+  }
+
+  .container > div > a + a {
+    margin-top: unset;
+  }
+
+  .container > div > a img {
+    max-width: 30px;
+  }
 }
