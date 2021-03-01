@@ -58,9 +58,10 @@ const ChallengesContextProvider: React.FC<IChallengeContextProps> = ({
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
-  useEffect(() => {
-    Notification.requestPermission();
-  }, []);
+  !isMobile &&
+    useEffect(() => {
+      Notification.requestPermission();
+    }, []);
 
   useEffect(() => {
     const cookieOptions: CookieAttributes = {
