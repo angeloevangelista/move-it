@@ -25,7 +25,7 @@ interface IChallengesContextData {
   closeLevelUpModal: VoidFunction;
 }
 
-interface IChallengeContextProps {
+export interface IChallengeContextProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;

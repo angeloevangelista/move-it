@@ -2,22 +2,15 @@ import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
-import styles from '../styles/pages/Home.module.css';
+import styles from '../styles/pages/Leaderboard.module.css';
 
 import Sidebar from '../components/Sidebar';
-import Profile from '../components/Profile';
-import Countdown from '../components/Countdown';
-import ChallengeBox from '../components/ChallengeBox';
-import ExperienceBar from '../components/ExperienceBar';
-import CompletedChallenges from '../components/CompletedChallenges';
-
-import CountdownContextProvider from '../contexts/CountdownContext';
 
 import ChallengesContextProvider, {
   IChallengeContextProps,
 } from '../contexts/ChallengesContext';
 
-export const Home: React.FC<IChallengeContextProps> = ({
+export const Leaderboard: React.FC<IChallengeContextProps> = ({
   level,
   currentExperience,
   challengesCompleted,
@@ -30,27 +23,10 @@ export const Home: React.FC<IChallengeContextProps> = ({
     >
       <div className={styles.container}>
         <Head>
-          <title>Início | move.it</title>
+          <title>Leaderboard | move.it</title>
         </Head>
 
-        <Sidebar activeRoute="home" />
-
-        <ExperienceBar />
-
-        <CountdownContextProvider>
-          <section>
-            <div>
-              <Profile />
-
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownContextProvider>
+        <Sidebar activeRoute="leaderboard" />
       </div>
     </ChallengesContextProvider>
   );
@@ -72,4 +48,4 @@ export const getServerSideProps: GetServerSideProps<IChallengeContextProps> = as
   };
 };
 
-export default Home;
+export default Leaderboard;

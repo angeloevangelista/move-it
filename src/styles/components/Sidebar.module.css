@@ -36,7 +36,7 @@
   justify-content: center;
 }
 
-.container > div > a {
+.container > div > div {
   width: 100%;
   position: relative;
 
@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 
-.container > div > a:before {
+.container > div > div:before {
   content: '';
   position: absolute;
 
@@ -66,11 +66,12 @@
   transition: opacity 0.25s ease;
 }
 
-.container > div > a:hover::before {
+.container > div > div.active::before,
+.container > div > div:hover::before {
   opacity: 1;
 }
 
-.container > div > a + a {
+.container > div > div + div {
   margin-top: 1rem;
 }
 
@@ -100,14 +101,14 @@
     flex-direction: row;
   }
 
-  .container > div > a {
+  .container > div > div {
     height: 100%;
 
     display: flex;
     justify-content: center;
   }
 
-  .container > div > a:before {
+  .container > div > div:before {
     top: unset;
     bottom: 0;
 
@@ -117,11 +118,11 @@
     height: 4px;
   }
 
-  .container > div > a + a {
+  .container > div > div + div {
     margin-top: unset;
   }
 
-  .container > div > a img {
+  .container > div > div img {
     max-width: 30px;
   }
 }
