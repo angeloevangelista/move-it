@@ -13,13 +13,13 @@ const Sidebar: React.FC<ISidebarProps> = ({ activeRoute }) => {
 
       <div>
         <Link href="/">
-          <div className={activeRoute === 'home' && styles.active}>
+          <div className={activeRoute === 'home' ? styles.active : ''}>
             <img src="/icons/home.svg" alt="Home" />
           </div>
         </Link>
 
         <Link href="Leaderboard">
-          <div className={activeRoute === 'leaderboard' && styles.active}>
+          <div className={activeRoute === 'leaderboard' ? styles.active : ''}>
             <img src="/icons/award.svg" alt="Ranking" />
           </div>
         </Link>

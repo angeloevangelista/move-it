@@ -4,11 +4,15 @@ import { useChallengesContext } from '../contexts/ChallengesContext';
 
 import styles from '../styles/components/Profile.module.css';
 
-const Profile: React.FC = () => {
+interface IProfileProps {
+  small?: boolean;
+}
+
+const Profile: React.FC<IProfileProps> = ({ small = false }) => {
   const { level } = useChallengesContext();
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${small ? styles.small : ''}`}>
       <img
         src="https://github.com/angeloevangelista.png"
         alt="Angelo Evangelista"

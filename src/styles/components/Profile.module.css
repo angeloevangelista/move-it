@@ -20,10 +20,33 @@
 }
 
 .container > div > p {
+  display: flex;
+  align-items: center;
+
   font-size: 1rem;
   margin-top: 0.5rem;
 }
 
 .container > div > p > img {
   margin-right: 0.5rem;
+}
+
+/* small */
+
+.container.small > img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.container.small > div {
+  margin-left: 1rem;
+}
+
+.container.small > div > strong {
+  font-size: 1rem;
+}
+
+.container.small > div > p {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
 }

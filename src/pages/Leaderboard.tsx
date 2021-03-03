@@ -5,6 +5,7 @@ import { GetServerSideProps } from 'next';
 import styles from '../styles/pages/Leaderboard.module.css';
 
 import Sidebar from '../components/Sidebar';
+import LeaderboardUser from '../components/LeaderboardUser';
 
 import ChallengesContextProvider, {
   IChallengeContextProps,
@@ -27,6 +28,37 @@ export const Leaderboard: React.FC<IChallengeContextProps> = ({
         </Head>
 
         <Sidebar activeRoute="leaderboard" />
+
+        <h1>Leaderboard</h1>
+
+        <div className={styles.ranking}>
+          <header>
+            <div>
+              <strong>Posição</strong>
+            </div>
+            <div>
+              <strong>Usuário</strong>
+              <strong>Desafios</strong>
+              <strong>
+                <span className={styles.hideResponsive}>Experiência</span>
+                <span className={styles.showOnlyResponsive}>XP</span>
+              </strong>
+            </div>
+          </header>
+          <div>
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+            <LeaderboardUser />
+          </div>
+        </div>
       </div>
     </ChallengesContextProvider>
   );
