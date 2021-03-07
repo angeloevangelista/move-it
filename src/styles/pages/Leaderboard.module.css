@@ -53,6 +53,10 @@
   width: 100%;
 }
 
+.ranking > header div strong:first-child {
+  text-align: left;
+}
+
 .showOnlyResponsive {
   display: none;
 }
